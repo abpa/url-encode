@@ -36,3 +36,14 @@
     transform: rotate(360deg);
   }
 }
+
+.btn {
+  background-color: #61dafb;
+  color: black;
+}
+
+.shorten-form {
+  background-color: rgb(163, 163, 163);
+  margin: 5px;
+  padding: 5px;
+}
