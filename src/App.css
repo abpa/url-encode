@@ -14,7 +14,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #2c3e50;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -40,12 +40,13 @@
 .btn {
   background-color: #61dafb;
   color: black;
+  width: 40%;
+  max-width: 130px;
 }
 
 .shorten-form {
-  background-color: rgb(163, 163, 163);
-  margin: 5px;
   padding: 5px;
+  width: 80%;
 }
 
 .redirect-box {
@@ -56,4 +57,46 @@
 .redirect-link {
   color: #282c34;
   padding: 10px;
+}
+
+.btn {
+	background-color:#27ae60;
+	border:1px solid #18ab29;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	text-decoration:none;
+  text-shadow:0px 1px 0px #2f6627;
+  max-width: ;
+}
+
+.btn:hover {
+	background-color:#5cbf2a;
+}
+
+.btn:active {
+	position:relative;
+  top:1px;
+}
+
+.previous-data-wrap {
+  background-color: #282c34;
+  min-height: 50vh;
+  color: #ffffff;
+}
+
+.title {
+  padding: 6%;
+}
+
+h1, h2, h3 {
+  margin: 0px;
+}
+
+input {
+  font-size: 1em;
+  width: 60%;
+  margin: 10px;
+  padding: 10px;
+  text-align: center;
 }

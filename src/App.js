@@ -25,6 +25,12 @@ class Form extends React.Component {
 
   async handleSubmit(event) {
     event.preventDefault();
+    if(!this.state.value || this.state.value == '') {
+      this.setState({
+        short: '',
+      })
+      return;
+    }
     await this.setState({
       fetching: true
     })
@@ -55,10 +61,12 @@ class Form extends React.Component {
       <>
         <form onSubmit={this.handleSubmit} className="shorten-form">
           <label>
-            <input type="url" value={this.state.value} onChange={this.handleChange} />
+            <input type="url" value={this.state.value} onChange={this.handleChange} placeholder="Enter an URL to encode"/>
           </label>
-          <input type="submit" value="Shorten this" className="btn"/>
+          <br></br>
+          <input type="submit" value="Encode" className="btn"/>
         </form>
+        
         <div>
           <>
           {
@@ -87,7 +95,9 @@ class PreviousData extends React.Component {
   render() {
     
     return (
-      <></>
+      <>
+      <h3>All URL</h3>
+      </>
     );
   }
 }
@@ -96,12 +106,14 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <p>
-          Enter a URL below to shorten
-        </p>
+        <h1 className="title">
+          Encode URL
+        </h1>
           <Form />
-          <PreviousData />
       </header>
+      <div className="previous-data-wrap">
+        <PreviousData />
+      </div>
     </div>
   );
 }
