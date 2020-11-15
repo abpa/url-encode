@@ -47,3 +47,13 @@
   margin: 5px;
   padding: 5px;
 }
+
+.redirect-box {
+  background-color: white;
+  padding: 10px;
+}
+
+.redirect-link {
+  color: #282c34;
+  padding: 10px;
+}

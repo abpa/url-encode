@@ -1,5 +1,11 @@
 import './App.css';
 import React from 'react';
+
+// todo take from .env
+const BASE_URL = 'http://127.0.0.1:5000'
+const SHORTEN_API_URL = `${BASE_URL}/shorten`
+const FETCH_ALL_API_URL = `${BASE_URL}/all`
+
 class Form extends React.Component {
   constructor(props) {
     super(props);
@@ -17,13 +23,31 @@ class Form extends React.Component {
     this.setState({value: event.target.value});
   }
 
-  handleSubmit(event) {
+  async handleSubmit(event) {
+    event.preventDefault();
+    await this.setState({
+      fetching: true
+    })
     //api call
-    this.setState({
-      short: this.state.value,
+    var headers = new Headers();
+    headers.append("Content-Type", "application/json");
+    const response = await fetch(SHORTEN_API_URL, {
+      method: 'post',
+      body: JSON.stringify({
+        'url': this.state.value
+      }),
+      mode: 'cors',
+      headers: headers
+    }).catch(e => {
+      console.log(e)
+    });
+    
+    const data = await response.json();
+    await this.setState({
+      short: data,
+      fetching: false,
       count: this.state.count + 1
     })
-    event.preventDefault();
   }
 
   render() {
@@ -36,11 +60,34 @@ class Form extends React.Component {
           <input type="submit" value="Shorten this" className="btn"/>
         </form>
         <div>
+          <>
           {
-            !this.state.short? null: <div>{this.state.count}</div> 
+            this.state.fetching? <div>Fetching...</div>: null
           }
+          </>
+          <>
+          {
+            !this.state.short? null: <div className="redirect-box"><a className="redirect-link" href={this.state.short.result}>{this.state.short.result}</a></div> 
+          }
+          </>
         </div>
       </>
+    );
+  }
+}
+
+class PreviousData extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: []
+    };
+  }
+
+  render() {
+    
+    return (
+      <></>
     );
   }
 }
@@ -53,6 +100,7 @@ function App() {
           Enter a URL below to shorten
         </p>
           <Form />
+          <PreviousData />
       </header>
     </div>
   );
